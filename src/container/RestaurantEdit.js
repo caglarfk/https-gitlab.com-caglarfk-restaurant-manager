@@ -1,28 +1,37 @@
 import { Container } from '@mui/material'
 import React ,{useState}from 'react'
+import { useDispatch } from 'react-redux';
 import RestaurantForm from '../components/RestaurantForm'
+import { add } from '../features/restaurantSlice';
+
 
 function RestaurantEdit() {
-const[restaurantName,setRestaurantName]=useState(null);
-const[restaurantType,setRestaurantType]=useState(null);
-const[restaurantProvince,setRestaurantProvince]=useState(null);
-const[restaurantDistrict,setRestaurantDistrict]=useState(null);
-const[restaurantEstablishmentTime,setRestaurantEstablishmentTime]=useState(null);
+const dispatch=useDispatch();
+const[name,setName]=useState(null);
+const[type,setType]=useState(null);
+const[city,setCity]=useState(null);
+const[district,setDistrict]=useState(null);
+
+const handleSaveClick =()=>{
+
 let data={
-    restaurantName,
-    restaurantType,
-    restaurantProvince,
-    restaurantDistrict,
-    restaurantEstablishmentTime
+  name,
+  type,
+  city,
+  district
 }
+console.log("merhaba handle save click data:::",data);
+dispatch(add(data))
+}
+
   return (
     <Container>
         <RestaurantForm
-        setRestaurantName={setRestaurantName}
-        setRestaurantType={setRestaurantType}
-        setRestaurantProvince={setRestaurantProvince}
-        setRestaurantDistrict={setRestaurantDistrict}
-        setRestaurantEstablishmentTime={setRestaurantEstablishmentTime}
+        setName={setName}
+        setType={setType}
+        setCity={setCity}
+        setDistrict={setDistrict}
+        handleSaveClick={handleSaveClick}
         />
     </Container>
   )

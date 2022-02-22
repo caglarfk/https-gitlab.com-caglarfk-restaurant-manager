@@ -1,23 +1,56 @@
-import { createSlice } from '@reduxjs/toolkit'
-
+import { ListItemIcon } from '@mui/material';
+import { createSlice, current } from '@reduxjs/toolkit'
+  ;
 const initialState = {
-  data:[
-      {
-          id:1,
-          name:"Gıpta Et",
-          type:"Vegan"
+  data: [
+    {
+      id: 1,
+      name: "Gıpta Et",
+      type: "Vegan",
+      city: "Ankara",
+      district: "Mamak"
 
-        },
-      {
-        id:2,
-        name:"Nusret Et",
-        type:"Vegan"
-      },
-      {
-        id:3,
-        name:"Murat Et",
-        type:"Vegan"
-      }
+    },
+    {
+      id: 2,
+      name: "Nusret Et",
+      type: "Vegan",
+      city: "Ankara",
+      district: "Mamak"
+
+    },
+    {
+      id: 3,
+      name: "Murat Et",
+      type: "Vegan",
+      city: "Ankara",
+      district: "Mamak"
+
+    },
+    {
+      id: 4,
+      name: "Dilan Rulo",
+      type: "Vejetaryan",
+      city: "Ankara",
+      district: "Mamak"
+
+    },
+    {
+      id: 5,
+      name: "Çağlar Kebap",
+      type: "Etçil",
+      city: "Ankara",
+      district: "Çankaya"
+
+    },
+    {
+      id: 6,
+      name: "Serdal Pizza",
+      type: "Karışık",
+      city: "Ankara",
+      district: "Etimesgut"
+
+    }
   ]
 }
 
@@ -25,10 +58,56 @@ export const restaurantSlice = createSlice({
   name: 'restaurant',
   initialState,
   reducers: {
-   
-  },
+    add: (state, action) => {
+      console.log("State:::", current(state.data));
+      console.log("Action:::", action.payload);
+
+      let id = 0;
+      console.log("satate data leghnt::::", state.data.length)
+      id = state.data[state.data.length - 1].id;
+
+      //action.payload.id=myObj.id;
+      action.payload = {
+        ...action.payload,
+        id: id + 1
+      }
+      console.log(action.payload.id);
+
+      //state.data.push(action.payload);
+      state.data = [
+        ...state.data,
+        action.payload
+      ]
+
+    },
+    del: (state, action) => {
+      console.log("basıldı", current(state.data));
+      console.log("basıldı", action.payload);
+    let id=action.payload.id;
+    let data=state.data.id
+    for(let i=0;i<state.data.length;i++){
+      if(id===data){
+        let index= i
+      state.data.splice(index,action.payload);
+      break;
+      }
+    }
+    
+      
+     
+      
+      console.log(state.data);
+    
+
+
+
+
+
+
+    }
+  }
 })
 
 // Action creators are generated for each case reducer function
-
-export default restaurantSlice.reducer
+export const { add, del } = restaurantSlice.actions;
+export default restaurantSlice.reducer;

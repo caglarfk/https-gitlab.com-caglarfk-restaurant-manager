@@ -5,12 +5,12 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
  */
 
-function RestaurantForm({setRestaurantName,setRestaurantType,setRestaurantProvince,setRestaurantDistrict,setRestaurantEstablishmentTime}) {
+function RestaurantForm({ handleSaveClick,setName,setType,setCity,setDistrict}) {
     return (
         <Box sx={{ width: '100%' }}>
             <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                 <Grid item xs={12}>
-                    <FormControl fullWidth sx={{ m: 1 }}  onChange={(e)=>setRestaurantName(e.target.value)} >
+                    <FormControl fullWidth sx={{ m: 1 }}  onChange={(e)=>setName(e.target.value)} >
                         <InputLabel htmlFor="outlined-adornment-amount" 
                        >
                             Restoran Adı
@@ -22,7 +22,7 @@ function RestaurantForm({setRestaurantName,setRestaurantType,setRestaurantProvin
                     </FormControl>
                 </Grid>
                 <Grid item xs={12}>
-                    <FormControl fullWidth sx={{ m: 1 }} onChange={(e)=>setRestaurantType(e.target.value)}>
+                    <FormControl fullWidth sx={{ m: 1 }} onChange={(e)=>setType(e.target.value)}>
                         <InputLabel htmlFor="outlined-adornment-amount"
                          >
                          Restoran Türü
@@ -34,7 +34,7 @@ function RestaurantForm({setRestaurantName,setRestaurantType,setRestaurantProvin
                     </FormControl>
                 </Grid>
                 <Grid item xs={12}>
-                    <FormControl fullWidth sx={{ m: 1 }} onChange={(e)=>setRestaurantProvince(e.target.value)}>
+                    <FormControl fullWidth sx={{ m: 1 }} onChange={(e)=>setCity(e.target.value)}>
                         <InputLabel htmlFor="outlined-adornment-amount" >
                         
                             Restoran İl
@@ -47,7 +47,7 @@ function RestaurantForm({setRestaurantName,setRestaurantType,setRestaurantProvin
              
                 </Grid>
                 <Grid item xs={12}>
-                    <FormControl fullWidth sx={{ m: 1 }} onChange={(e)=>setRestaurantDistrict(e.target.value)} >
+                    <FormControl fullWidth sx={{ m: 1 }} onChange={(e)=>setDistrict(e.target.value)} >
                         <InputLabel htmlFor="outlined-adornment-amount"
                        >
                             Restoran İlçe
@@ -58,20 +58,9 @@ function RestaurantForm({setRestaurantName,setRestaurantType,setRestaurantProvin
                         />
                     </FormControl>
                 </Grid>
+                
                 <Grid item xs={12}>
-                    <FormControl fullWidth sx={{ m: 1 }} onChange={(e)=>setRestaurantEstablishmentTime(e.target.value)} >
-                        <InputLabel htmlFor="outlined-adornment-amount"
-                        >
-                            Restoran Kuruluş Zamanı
-                            </InputLabel>
-                        <OutlinedInput
-                            id="outlined-adornment-amount"
-                            label="Restoran-Kuruluş-Zamanı"
-                        />
-                    </FormControl>
-                </Grid>
-                <Grid item xs={12}>
-                    <Button variant="contained" color="secondary"  >
+                    <Button variant="contained" color="secondary" onClick={handleSaveClick} >
                          Save
                     </Button>
                 </Grid>
