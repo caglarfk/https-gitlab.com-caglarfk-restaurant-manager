@@ -12,6 +12,7 @@ function RestaurantListContainer() {
 
     const handleClick = (event, cellValues) => {
       console.log(cellValues.row);
+      event.stopPropagation();
       dispatch(del(cellValues.row))
     };
   

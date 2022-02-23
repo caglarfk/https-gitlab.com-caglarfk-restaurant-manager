@@ -81,25 +81,16 @@ export const restaurantSlice = createSlice({
 
     },
     del: (state, action) => {
-      console.log("basıldı", current(state.data));
       console.log("basıldı", action.payload);
-    let id=action.payload.id;
-    let data=state.data.id
-    for(let i=0;i<state.data.length;i++){
-      if(id===data){
-        let index= i
-      state.data.splice(index,action.payload);
-      break;
-      }
-    }
-    
-      
+
+
+   
      
+
+      let newData = state.data.filter((item) =>  item.id != action.payload.id )
+      state.data = newData;
+
       
-      console.log(state.data);
-    
-
-
 
 
 
