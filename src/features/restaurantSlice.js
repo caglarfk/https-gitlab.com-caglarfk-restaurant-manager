@@ -1,6 +1,6 @@
-import { ListItemIcon } from '@mui/material';
-import { createSlice, current } from '@reduxjs/toolkit'
-  ;
+
+import { createSlice, current } from '@reduxjs/toolkit';
+
 const initialState = {
   data: [
     {
@@ -82,23 +82,24 @@ export const restaurantSlice = createSlice({
     },
     del: (state, action) => {
       console.log("basıldı", action.payload);
-
-
-   
-     
-
-      let newData = state.data.filter((item) =>  item.id != action.payload.id )
+      let newData = state.data.filter((item) => item.id != action.payload.id)
       state.data = newData;
-
+    },
+    update: (state, action) => {
+      console.log("State:::", current(state.data));
+      console.log("Action:::", action.payload);
       
-
-
-
-
+      const newData = state.data.map((item) => {
+        if(item.id == action.payload.id){
+          return action.payload;
+        }
+        return item;
+      });
+      state.data = newData;
     }
   }
 })
 
 // Action creators are generated for each case reducer function
-export const { add, del } = restaurantSlice.actions;
+export const { add, del, update } = restaurantSlice.actions;
 export default restaurantSlice.reducer;
